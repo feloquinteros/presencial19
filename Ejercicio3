@@ -1,0 +1,42 @@
+#Se tiene la clase Vehicle que recibe como argumento un modelo y un año. El método
+#engine_start enciende el vehículo.
+
+class Vehicle
+  attr_reader :model, :year, :start
+   def initialize(model, year)
+     @model = model
+     @year = year
+     @start = false
+   end
+
+   def engine_start
+     @start = true
+   end
+end
+
+class Car < Vehicle
+  @@contador = 0
+  def initialize(model, year)
+    super
+    @@contador += 1
+  end
+
+  def self.cantidad_de_instancias
+    @@contador
+  end
+
+  def engine_start
+    super
+    puts 'el motor se ha encendido!'
+  end
+end
+
+10.times do
+   Car.new('Yaris', 2006)
+end
+
+puts Car.cantidad_de_instancias
+
+
+#Consultar la cantidad de instancias generadas de Car mediante el método de clase
+#creado.
